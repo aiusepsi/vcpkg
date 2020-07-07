@@ -246,6 +246,8 @@ if (VCPKG_LIBRARY_LINKAGE STREQUAL static)
     message(WARNING "OVIS is currently unsupported in this build configuration, turning it off")
     set(BUILD_opencv_ovis OFF)
   endif()
+
+  set(PROTOBUF_USE_STATIC -DProtobuf_USE_STATIC_LIBS=ON)
 endif()
 
 if("ffmpeg" IN_LIST FEATURES)
@@ -303,6 +305,7 @@ vcpkg_configure_cmake(
         ###### PROTOBUF
         -DPROTOBUF_UPDATE_FILES=ON
         -DUPDATE_PROTO_FILES=ON
+        ${PROTOBUF_USE_STATIC}
         ###### PYLINT/FLAKE8
         -DENABLE_PYLINT=OFF
         -DENABLE_FLAKE8=OFF
